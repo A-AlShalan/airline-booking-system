@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Flights</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item  *ngFor="let item of myFlights; let i=index" overflow-scroll="true">
+    <ion-card (click)="openModal(i)">
+      <ion-card-header>
+        <ion-card-subtitle>{{item.name}}</ion-card-subtitle>
+        <ion-card-title>{{item.from}} to {{item.distination}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+       <p>This flight is from {{item.from}} to {{item.distination}}</p>
+        <p>The Price is: {{item.price}}</p>
+        <p>The date from: {{item.date}}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+</ion-content>
+

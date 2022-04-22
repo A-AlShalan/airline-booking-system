@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{flight.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <h1>Pick {{flight.name}}</h1>
+    <h4>Flight Take Of Time:</h4><p> {{flight.date}}</p>
+    <h4>From:</h4><p> {{flight.from}}</p>
+    <h4>To:</h4>
+    <p>{{flight.distination}}</p>
+    <h4>The price of the flight is:</h4>
+    <p> {{flight.price}}</p>
+    <ion-button [color]="from === 'MyFlightPage'? 'danger' : 'primary'" expand="block" shape="round" (click)="from==='MyFlightPage'?deleteTicket():buyTicket()">{{from==='MyFlightPage'?'Cancel Ticket':'Buy Ticket'}}</ion-button>
+</ion-content>

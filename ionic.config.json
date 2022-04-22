@@ -1,0 +1,7 @@
+{
+  "name": "Airline-booking-system",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
