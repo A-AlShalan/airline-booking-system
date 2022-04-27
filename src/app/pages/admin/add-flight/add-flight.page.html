@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Flight</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Flight Name</ion-label>
+          <ion-input [(ngModel)]="name"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Flight Distination</ion-label>
+          <ion-input [(ngModel)]="distination"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Flight From</ion-label>
+          <ion-input [(ngModel)]="from"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Flight Price</ion-label>
+          <ion-input [(ngModel)]="price"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Flight Date</ion-label>
+          <ion-input [(ngModel)]="date"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="col-button">
+        <ion-button (click)="addFlight()">
+          Add Flight
+        </ion-button>
+      </ion-col>
+    </ion-row>
+</ion-content>
+
+
+
+
+
+<!-- id: number;
+name: string;
+distination: string;
+from: string;
+date: Date;
+price: number; -->

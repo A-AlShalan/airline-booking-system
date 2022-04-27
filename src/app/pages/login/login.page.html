@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{loginIn===true?'Login':'Signup'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1>Welcome to our application</h1>
+  <div>
+     <ion-item>
+    <ion-label position="floating" value="email">Email</ion-label>
+    <ion-input  (ionChange)="emailChange($event)"></ion-input>
+  </ion-item>
+  </div>
+
+  <div>
+    <ion-item>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input (ionChange)="passChange($event)"></ion-input>
+  </ion-item>
+  </div>
+
+  <div class="button">
+    <ion-button (click)="loginIn===true?isAuth():signUp()">
+      {{loginIn===true?'Login':'Signup'}}
+    </ion-button>
+  </div>
+
+  <div class="changeStatus">
+    Do you want to  <a (click)="changeStatus()">{{loginIn===true?'Signup':'Login'}}</a>
+  </div>
+
+</ion-content>

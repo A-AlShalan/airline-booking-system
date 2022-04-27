@@ -34,6 +34,7 @@ export class FlightDetailsComponent implements OnInit {
     await loading.onDidDismiss();
     this.modalCntl.dismiss();
     this.flightService.addFlight(this.flight.id);
+    this.flightService.sendEmail(this.flight);
   }
   async deleteTicket(){
     const loading = await this.loadingController.create({

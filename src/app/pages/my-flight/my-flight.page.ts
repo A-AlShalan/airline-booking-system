@@ -1,8 +1,8 @@
 import { ModalController } from '@ionic/angular';
-import { FlightsService } from './../service/flights.service';
-import { Flight } from './../service/flights.config';
 import { Component, OnInit } from '@angular/core';
-import { FlightDetailsComponent } from '../flight-details/flight-details.component';
+import { FlightDetailsComponent } from 'src/app/flight-details/flight-details.component';
+import { Flight } from 'src/app/service/flights.config';
+import { FlightsService } from 'src/app/service/flights.service';
 
 @Component({
   selector: 'app-my-flight',
@@ -27,10 +27,7 @@ export class MyFlightPage implements OnInit {
      modal.onDidDismiss()
      .then((data) => {
        console.log(data);
-       ; // Here's your selected user!
    });
-    // this.modalCtrl.dismiss().then(res=>{
-    //   console.log(res);
-    // });
+
   }
 }
