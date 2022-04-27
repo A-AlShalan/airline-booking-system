@@ -3,6 +3,6 @@ export interface Flight  {
   name: string;
   distination: string;
   from: string;
-  date: Date;
-  price: number;
+  date: string;
+  price: string;
 }

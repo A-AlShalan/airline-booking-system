@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: AdminPage
+  },
+  {
+    path: 'add-flight',
+    loadChildren: () => import('./add-flight/add-flight.module').then( m => m.AddFlightPageModule)
   }
 ];
 

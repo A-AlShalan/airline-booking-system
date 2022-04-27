@@ -1,0 +1,22 @@
+.card {
+
+  // position: absolute;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  height: 121px;
+  width: 99%;
+  background: #746a6a;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 28px -6px #5e5656;
+  top: 82px;
+  text-align: center;
+
+}
+/* On mouse-over, add a deeper shadow */
+
+/* Add some padding inside the card container */
+.container {
+  padding: 23px 16px;
+}

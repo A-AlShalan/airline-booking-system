@@ -11,6 +11,7 @@ import { User } from 'src/app/service/user.config';
 })
 export class LoginPage implements OnInit {
   loginIn = true;
+  isAuthRole;
   email: string;
   password: string;
   constructor(private authSerice: AuthService,
@@ -20,20 +21,29 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
   async isAuth(){
-    const obj: User = {
+    const obj = {
       email: this.email,
-      password:this.password
+      password:this.password,
     };
     console.log(obj);
-    this.loginIn = this.authSerice.isAuth(obj);
-    if(this.loginIn){
+    this.isAuthRole = this.authSerice.isAuth(obj);
+    console.log('isAuth',this.isAuthRole);
+    if(this.isAuthRole === 'user'){
       const loading = await this.loadingController.create({
         message: 'Logged In...',
         duration: 2000
       });
       await loading.present();
       this.router.navigate(['user/flights']);
-    }else{
+    }if(this.isAuthRole === 'admin'){
+      const loading = await this.loadingController.create({
+        message: 'Logged In...',
+        duration: 2000
+      });
+      await loading.present();
+      this.router.navigate(['admin']);
+    }
+    else{
       const loading = await this.loadingController.create({
         message: 'Email or password is not correct',
         duration: 2000
@@ -49,7 +59,7 @@ export class LoginPage implements OnInit {
     this.email = event.target.value;
   }
   async signUp(){
-    this.authSerice.addUser({email:this.email,password:this.password});
+    this.authSerice.addUser({email:this.email,password:this.password,role:'user'});
     const loading = await this.loadingController.create({
       message: 'Logged In...',
       duration: 2000
