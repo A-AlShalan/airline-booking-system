@@ -19,6 +19,7 @@ export class LoginPage implements OnInit {
               private loadingController: LoadingController) { }
 
   ngOnInit() {
+    this.authSerice.getUser();
   }
   async isAuth(){
     const obj = {
@@ -27,7 +28,6 @@ export class LoginPage implements OnInit {
     };
     console.log(obj);
     this.isAuthRole = this.authSerice.isAuth(obj);
-    console.log('isAuth',this.isAuthRole);
     if(this.isAuthRole === 'user'){
       const loading = await this.loadingController.create({
         message: 'Logged In...',

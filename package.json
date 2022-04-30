@@ -28,6 +28,8 @@
     "@emailjs/browser": "^3.6.2",
     "@ionic/angular": "^6.1.2",
     "cordova-plugin-email-composer": "^0.10.0",
+    "crypto-hash": "^2.0.1",
+    "cryptr": "^6.0.3",
     "ion-bottom-sheet": "^2.0.6",
     "nodemailer": "^6.7.3",
     "rxjs": "~6.6.0",

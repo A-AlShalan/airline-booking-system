@@ -2,11 +2,12 @@
 import { Injectable } from '@angular/core';
 import { Flight } from './flights.config';
 import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
-
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
 export class FlightsService {
+  url: 'http://localhost:8080/';
   flgihts_obj: Flight[] = [
     {
       id: 1,
@@ -98,18 +99,18 @@ export class FlightsService {
       price: '200',
     },
   ];
-  constructor(private emailComposer: EmailComposer) {}
+  constructor(private http: HttpClient) {}
   getAllFlights() {
     return this.flgihts_obj;
   }
   getUserFlights() {
-    return this.user_flights;
+    return this.http.get('http://localhost:8080/').pipe();
   }
   addFlight(obj){
-    console.log('This is the id: ',obj);
     this.flgihts_obj.push(obj);
-    console.log(this.flgihts_obj);
-
+  }
+  serveFlight(obj){
+    this.user_flights.push(obj);
   }
   deleteTicket(id: number){
     console.log(id);

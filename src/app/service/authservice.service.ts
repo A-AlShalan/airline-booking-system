@@ -1,40 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 /* eslint-disable @typescript-eslint/prefer-for-of */
 /* eslint-disable @typescript-eslint/semi */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Injectable } from '@angular/core';
-import { use } from 'vue/types/umd';
-import { Flight } from './flights.config';
 import { User } from './user.config';
+import {sha256} from 'crypto-hash';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  users = [
-    {
-      email: 'aaa',
-      password: 'aaa',
-      role: 'admin'
-    },
-    {
-      email: 'bbb',
-      password: 'aaa',
-      role: 'admin'
-    },
-    {
-      email: 'ccc',
-      password: 'aaa',
-      role: 'user'
-    },
-    {
-      email: 'ddd',
-      password: 'aaa',
-      role: 'user'
-    },
-  ];
-  constructor() {}
-
+  users = [];
+  constructor(private http: HttpClient) {}
+  getUser(){
+   return this.http.get('http://localhost:8080/user').toPromise().then(res =>{
+     this.users.push(res)
+   });
+  }
   isAuth(user) {
   for (let index = 0; index < this.users.length; index++) {
       if(this.users[index].email=== user.email) {
@@ -50,7 +33,10 @@ export class AuthService {
   return false;
 
   }
-  addUser(user: User){
+  async addUser(user: User){
+    console.log(user);
+    const hashedPass = await sha256(user.password);
+    console.log('This is the hashed passeor: ', hashedPass);
     this.users.push(user)
   }
 }

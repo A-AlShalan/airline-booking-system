@@ -18,14 +18,7 @@ export class FlightDetailsComponent implements OnInit {
 
   ngOnInit() {}
 
-  ionViewWillEnter(){
-    console.log(this.flight);
-    console.log(this.from);
-
-  }
  async buyTicket(){
-   console.log(this.flight);
-
     const loading = await this.loadingController.create({
       message: 'Buying is in proccess ...',
       duration: 2000
@@ -33,7 +26,7 @@ export class FlightDetailsComponent implements OnInit {
     await loading.present();
     await loading.onDidDismiss();
     this.modalCntl.dismiss();
-    this.flightService.addFlight(this.flight.id);
+    this.flightService.serveFlight(this.flight);
     this.flightService.sendEmail(this.flight);
   }
   async deleteTicket(){
