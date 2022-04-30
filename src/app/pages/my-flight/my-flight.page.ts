@@ -17,7 +17,8 @@ export class MyFlightPage implements OnInit {
   ngOnInit() {
   }
   ionViewWillEnter(){
-   this.myFlights =  this.flightService.getUserFlights();
+    this.flightService.getUserFlights().subscribe(res=>{
+    });
   }
   async openModal(id){
     const modal = await this.modalCtrl.create({component: FlightDetailsComponent,
@@ -26,7 +27,6 @@ export class MyFlightPage implements OnInit {
      await modal.present();
      modal.onDidDismiss()
      .then((data) => {
-       console.log(data);
    });
 
   }
