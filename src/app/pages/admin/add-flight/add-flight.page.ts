@@ -21,22 +21,23 @@ export class AddFlightPage implements OnInit {
   ngOnInit() {
   }
   async addFlight(){
-    const id = Math. floor(Math. random() * (100 - 0 + 1)) + 0;
+    // const id = Math. floor(Math. random() * (100 - 0 + 1)) + 0;
     const obj = {
-      id,
-      name:this.name,
-      distination:this.distination,
-      from:this.from,
       date:this.date,
-      price:this.price
+      sourceCity:this.from,
+      destenation:this.distination,
+      priceForFlight:this.price,
+      capacityForFlight:10
     };
-    console.log('This is obj: ',obj);
-    this.flightService.addFlight(obj);
     const loading = await this.loadingController.create({
       message: 'Adding Flight...',
       duration: 2000
     });
     await loading.present();
+    console.log('This is obj: ',obj);
+    await this.flightService.addFlight(obj).then(res=>{
+      console.log(res);
+    });
     this.router.navigate(['admin']);
   }
 }

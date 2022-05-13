@@ -26,8 +26,8 @@ export class LoginPage implements OnInit {
       email: this.email,
       password:this.password,
     };
-    console.log(obj);
     this.isAuthRole = this.authSerice.isAuth(obj);
+
     if(this.isAuthRole === 'user'){
       const loading = await this.loadingController.create({
         message: 'Logged In...',
@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
       });
       await loading.present();
       this.router.navigate(['user/flights']);
-    }if(this.isAuthRole === 'admin'){
+    }else if(this.isAuthRole === 'admin'){
       const loading = await this.loadingController.create({
         message: 'Logged In...',
         duration: 2000
@@ -59,7 +59,11 @@ export class LoginPage implements OnInit {
     this.email = event.target.value;
   }
   async signUp(){
-    this.authSerice.addUser({email:this.email,password:this.password,role:'user'});
+    this.authSerice.addUser({
+  email: this.email, password: this.password
+}).then(res=>{
+  console.log(res);
+});
     const loading = await this.loadingController.create({
       message: 'Logged In...',
       duration: 2000

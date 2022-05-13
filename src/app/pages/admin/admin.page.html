@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>admin</ion-title>
+    <ion-button (click)="logout()">Logout</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -19,6 +20,15 @@
       <div class="card">
         <div class="container">
         <h1>Show Report</h1>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <div class="card" (click)="goFlightLists()">
+        <div class="container">
+        <h1>Edit Flights</h1>
         </div>
       </div>
     </ion-col>

@@ -3,6 +3,7 @@ import { FlightsService } from './../service/flights.service';
 import { Component, OnInit } from '@angular/core';
 import { Flight } from '../service/flights.config';
 import { MenuController, ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fights-cards',
@@ -14,30 +15,45 @@ export class FightsCardsComponent implements OnInit {
     { title: 'User', url: '/folder/Inbox', icon: 'mail' },
     { title: 'Admin', url: '/folder/Outbox', icon: 'paper-plane' },
   ];
-  flights: Flight[] = [];
-  constructor(private flightService: FlightsService,
-              private modalCtrl: ModalController,
-              private menuToggle: MenuController
-            ) { }
+  flights: any[] = [];
+  searchTerm: string;
+  constructor(
+    private flightService: FlightsService,
+    private modalCtrl: ModalController,
+    private menuToggle: MenuController,
+    private router: Router
+  ) {}
 
-  ngOnInit() {
-    console.log('In');
+ async ngOnInit() {
+  await  this.flightService.getAllFlights();
+   this.flights = this.flightService.flgihts_obj;
   }
-  ionViewWillEnter(){
-    this.flights = this.flightService.getAllFlights();
-  }
-  async openModal(id){
-    console.log(id);
-    console.log(this.flights[id]);
+  ionViewWillEnter() {}
+  async openModal(id) {
 
-    const modal = await this.modalCtrl.create({component: FlightDetailsComponent,
-    componentProps:{flight:this.flights[id]}
-  });
+
+    const modal = await this.modalCtrl.create({
+      component: FlightDetailsComponent,
+      componentProps: { flight: this.flights[id] },
+    });
     return await modal.present();
   }
   openFirst() {
     this.menuToggle.enable(true, 'first');
     this.menuToggle.open('first');
   }
-
+  checkFilter(event) {
+    const title = event.target.value;
+    if (title) {
+      this.flights = this.flights.filter((val) => {
+        console.log(val.distination);
+        return val.distination.includes(title);
+      });
+    } else {
+      // this.flights = this.flightService.getAllFlights();
+    }
+  }
+  logout(){
+    this.router.navigate(['login']);
+  }
 }

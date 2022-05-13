@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/service/authservice.service';
 import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { FlightDetailsComponent } from 'src/app/flight-details/flight-details.component';
@@ -11,13 +12,17 @@ import { FlightsService } from 'src/app/service/flights.service';
 })
 export class MyFlightPage implements OnInit {
   myFlights: Flight[];
+  currentUser;
   constructor(private flightService: FlightsService,
-              private modalCtrl: ModalController) { }
+              private modalCtrl: ModalController,
+              private authService: AuthService) { }
 
   ngOnInit() {
+    this.currentUser = this.authService.currentUser;
   }
   ionViewWillEnter(){
-    this.flightService.getUserFlights().subscribe(res=>{
+    this.flightService.getUserFlights(this.currentUser.email).subscribe(res=>{
+      // this.myFlights = res;
     });
   }
   async openModal(id){

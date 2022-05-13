@@ -16,4 +16,10 @@ export class AdminPage implements OnInit {
   addFlight(){
     this.router.navigate(['admin/add-flight']);
   }
+  goFlightLists(){
+    this.router.navigate(['admin/flight-list']);
+  }
+  logout(){
+    this.router.navigate(['login']);
+  }
 }
